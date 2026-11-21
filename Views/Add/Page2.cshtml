@@ -1,0 +1,26 @@
+﻿@model AccommodationViewModel
+@{
+    ViewData["Title"] = "Accommodation";
+}
+<h2>Accommodation Details For @ViewBag.Subhead</h2>
+
+<form asp-action="Page2" method="post">
+
+    <div class="mb-3">
+        <label asp-for="AccommodationPhone"></label>
+        <input asp-for="AccommodationPhone" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AccommodationEmail"></label>
+        <input asp-for="AccommodationEmail" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Next</button>
+
+</form>
+
+<form asp-action="Cancel" method="post" class="mt-2">
+    <button type="submit" class="btn btn-secondary">Cancel</button>
+
+</form>

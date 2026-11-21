@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TripLog.Models.Trip>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<p>
+    <a asp-controller="Add" asp-action="Page1" class="btn btn-primary">Add Trip</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Destination</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Accommodation</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Things To Do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Destination</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.EndDate.ToShortDateString()</td>
+                <td>@item.Accommodation?.Name</td>
+                <td>@item.Accommodation?.Phone</td>
+                <td>@item.Accommodation?.Email</td>
+                <td>
+                    @item.ThingsToDo?.Activity1
+                    @if (!string.IsNullOrEmpty(item.ThingsToDo?.Activity2))
+                    {
+                        <text>, @item.ThingsToDo.Activity2</text>
+                    }
+                    @if (!string.IsNullOrEmpty(item.ThingsToDo?.Activity3))
+                    {
+                        <text>, @item.ThingsToDo.Activity3</text>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
